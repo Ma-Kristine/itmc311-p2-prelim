@@ -18,12 +18,12 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom when new messages are added
+  // auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // --- Axios helper ---
+  // axios helper
   const doRequest = async (
     url: string,
     method: "get" | "post" | "patch" | "delete",
@@ -45,19 +45,19 @@ function App() {
     }
   };
 
-  // Helper to add messages to the chat
+  // helper to add messages to the chat
   const addMessage = (text: string, sender: 'user' | 'system' = 'system') => {
     setMessages(prev => [...prev, {text, sender}]);
   };
 
-  // Helper to go back to previous step
+  // helper to go back to previous step
   const goBack = () => {
     if (step > 1) {
       setStep(step - 1);
     }
   };
 
-  // --- Handlers ---
+  // handlers
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     const data = await doRequest("https://prelim-exam.onrender.com/signup", "post", {
@@ -243,7 +243,7 @@ function App() {
   return (
     <div className="playground-container">
       <div className="app-wrapper">
-        {/* Header Section */}
+        {/* header */}
         <header className="app-header">
           <h1 className="app-title">Preliminary Exam Part 2</h1>
           <div className="progress-container">
@@ -258,7 +258,7 @@ function App() {
         </header>
 
         <div className="app-content">
-          {/* Chat message area */}
+          {/* message area */}
           <div className="chat-container">
             <div className="chat-header">
               <h3>API Responses</h3>
@@ -278,7 +278,7 @@ function App() {
             </div>
           </div>
 
-          {/* Form Section */}
+          {/* form section */}
           <div className="form-container">
             {isLoading && (
               <div className="loading-overlay">
@@ -288,7 +288,7 @@ function App() {
               </div>
             )}
 
-            {/* Back Button */}
+            {/* back button */}
             {step > 1 && step < 16 && (
               <button 
                 className="btn btn-outline-secondary mb-3" 
@@ -298,7 +298,7 @@ function App() {
               </button>
             )}
 
-            {/* --- STEP 1 --- Signup --- */}
+            {/* STEP 1 */}
             {step === 1 && (
               <div className="step-card">
                 <h3 className="step-title">Step 1: Create Account</h3>
@@ -330,7 +330,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 2 --- Age + show ID and CODE --- */}
+            {/* STEP 2 */}
             {step === 2 && (
               <div className="step-card">
                 <h3 className="step-title">Step 2: Complete Profile</h3>
@@ -352,7 +352,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 3 --- Login without AuthKey (to get the message) --- */}
+            {/* STEP 3 */}
             {step === 3 && (
               <div className="step-card">
                 <h3 className="step-title">Step 3: Login (Without Auth Key)</h3>
@@ -395,7 +395,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 4 --- Login with AuthKey --- */}
+            {/* STEP 4 */}
             {step === 4 && (
               <div className="step-card">
                 <h3 className="step-title">Step 4: Login (With Auth Key)</h3>
@@ -448,7 +448,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 5 --- Edit Username --- */}
+            {/* STEP 5 */}
             {step === 5 && (
               <div className="step-card">
                 <h3 className="step-title">Step 5: Update Profile</h3>
@@ -469,7 +469,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 6 --- Add Pet --- */}
+            {/* STEP 6 */}
             {step === 6 && (
               <div className="step-card">
                 <h3 className="step-title">Step 6: Add a Pet</h3>
@@ -500,7 +500,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 7 --- View User Pets --- */}
+            {/* STEP 7 */}
             {step === 7 && (
               <div className="step-card">
                 <h3 className="step-title">Step 7: View Your Pets</h3>
@@ -511,7 +511,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 8 --- View All Pets (Unauthorized) --- */}
+            {/* STEP 8 */}
             {step === 8 && (
               <div className="step-card">
                 <h3 className="step-title">Step 8: View All Pets (Unauthorized)</h3>
@@ -522,7 +522,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 9 --- Change Role to Admin --- */}
+            {/* STEP 9 */}
             {step === 9 && (
               <div className="step-card">
                 <h3 className="step-title">Step 9: Become an Admin</h3>
@@ -543,7 +543,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 10 --- View All Pets (Authorized as Admin) --- */}
+            {/* STEP 10 */}
             {step === 10 && (
               <div className="step-card">
                 <h3 className="step-title">Step 10: View All Pets (Admin)</h3>
@@ -554,7 +554,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 11 --- Get Pet Count --- */}
+            {/* STEP 11 */}
             {step === 11 && (
               <div className="step-card">
                 <h3 className="step-title">Step 11: Get Pet Count</h3>
@@ -565,7 +565,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 12 --- Delete Pet --- */}
+            {/* STEP 12 */}
             {step === 12 && (
               <div className="step-card">
                 <h3 className="step-title">Step 12: Delete a Pet</h3>
@@ -576,7 +576,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 13 --- Get Age Stats --- */}
+            {/* STEP 13 */}
             {step === 13 && (
               <div className="step-card">
                 <h3 className="step-title">Step 13: Get Age Statistics</h3>
@@ -587,7 +587,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 14 --- Get User Count --- */}
+            {/* STEP 14 */}
             {step === 14 && (
               <div className="step-card">
                 <h3 className="step-title">Step 14: Get User Count</h3>
@@ -598,7 +598,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 15 --- Logout --- */}
+            {/* STEP 15 */}
             {step === 15 && (
               <div className="step-card">
                 <h3 className="step-title">Step 15: Logout</h3>
@@ -609,7 +609,7 @@ function App() {
               </div>
             )}
 
-            {/* --- STEP 16 --- Completion --- */}
+            {/* STEP 16 */}
             {step === 16 && (
               <div className="step-card text-center">
                 <div className="completion-animation">
